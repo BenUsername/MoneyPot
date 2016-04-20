@@ -15,7 +15,7 @@ contract MoneyPot {
 
 	function contribute() public returns (bool success) {
 
-	if (collected >= target) { return false; }
+	if (collected >= target) { throw; } // use throw rather than return so that transaction is reverted and funds are not kept in the contract. gas is still spent though
 	participantsPaid[msg.sender] = msg.value;
 	collected++;
 	Deposit(msg.sender , msg.value);
